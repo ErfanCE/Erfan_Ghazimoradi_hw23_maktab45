@@ -20,5 +20,10 @@ router.post('/login', authentication.login);
 // logout blogger
 router.get('/logout', authentication.logout);
 
+// render reset-password page
+router.get('/reset-password', authentication.resetPasswordPage);
+
+router.post('/reset-password', validation.resetPassword(), validation.validator2, authentication.resetPassword);
+
 
 module.exports = router;

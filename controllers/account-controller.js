@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const bcrypt = require('bcrypt');
 const Blogger = require('../models/blogger-model');
 const Article = require('../models/article-model');
 const Comment = require('../models/comment-model');
@@ -59,5 +60,29 @@ const remove = (request, response, next) => {
     });
 };
 
+// change password
+const password = (request, response, next) => {
+    Blogger.findById(request.session.blogger._id, (err, blogger) => {
+        if (err) return console.log('change password: ' + err.message);
 
-module.exports = { profile, edit, remove };
+        bcrypt.compare(request.body.prePassword, blogger.password, (err, isMatch) => {
+            if (err) return console.log('compare password: ' + err.message);
+            
+            if (!isMatch) return response.send('not match!');
+
+            // change password and update blogger session
+            blogger.password = request.body.newPassword;
+
+            request.session.blogger = blogger;
+
+            blogger.save(err => {
+                if (err) return console.log('chnage password(save): ' + err.message);
+
+                return response.send('password changed');
+            });
+        });
+    });
+};
+
+
+module.exports = { profile, edit, remove, password };

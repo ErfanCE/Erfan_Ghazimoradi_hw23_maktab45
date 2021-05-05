@@ -73,5 +73,27 @@ const logout = (request, response, next) => {
     response.redirect('/');
 };
 
+// reset password page
+const resetPasswordPage = (request, response, next) => {
+    response.render(path.join(__dirname, '..', 'views', 'authentication', 'reset-password.ejs'), {status: 'signup'});
+};
 
-module.exports = { signupPage, signup, loginPage, login, logout };
+// reset password
+const resetPassword = (request, response, next) => {
+    Blogger.findOne({username: request.body.username}, (err, blogger) => {
+        if (err) return console.log('reset password: ' + err.message);
+
+        if (request.body.phoneNumber !== blogger.phoneNumber) return response.send('not-match');
+
+        blogger.password = request.body.password;
+
+        blogger.save(err => {
+            if (err) return console.log('reset password ' + err.message);
+
+            response.send('reset');
+        });
+    });
+};
+
+
+module.exports = { signupPage, signup, loginPage, login, logout, resetPasswordPage, resetPassword };

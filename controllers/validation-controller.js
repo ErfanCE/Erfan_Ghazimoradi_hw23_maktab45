@@ -177,6 +177,28 @@ const updateArticle = () => {
     ];
 };
 
+const resetPassword = () => {
+    return [
+        body('username')
+            .notEmpty().withMessage('username required.')
+            .bail()
+            .isLength({max: 30}).withMessage('username must be maximum length of 30.')
+            .matches(usernameRegex, 'g').withMessage('invalid username.'),
+        body('phoneNumber')
+            .notEmpty().withMessage('phoneNumber required.')
+            .bail()
+            .matches(phoneRegex, 'g').withMessage('invalid phoneNumber.'),
+        body('password')
+            .notEmpty().withMessage('password required.')
+            .bail()
+            .isLength({min: 8}).withMessage('password must be at least 8 characters long.')
+            .bail()
+            .matches(/((?=.*\d)|(?=.*\W)|(?=.*_))(?=.*[a-zA-Z])/, 'g').withMessage('password must be mix of letter, numbers or special characters.')
+            .bail()
+            .matches(passwordRegex, 'g').withMessage('invalid password pattern.')
+    ];
+};
+
 
 // signup validator
 const validator = (request, response, next) => {
@@ -221,4 +243,4 @@ const validator3 = (request, response, next) => {
 };
 
 
-module.exports = { signup, update, updateArticle, testValid, validator, validator2, validator3 };
+module.exports = { signup, update, updateArticle, testValid, resetPassword, validator, validator2, validator3 };

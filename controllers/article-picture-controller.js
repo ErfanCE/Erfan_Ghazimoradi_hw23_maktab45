@@ -19,7 +19,6 @@ const articlePictureStorage = multer.diskStorage({
         });
     }, 
     filename: (request, file, cb) => {
-
         if (!request.body.title) cb(null, `${request.session.blogger.username}-${request.params.articleTitle}-${Date.now()}-${file.originalname}`);
         else cb(null, `${request.session.blogger.username}-${request.body.title}-${Date.now()}-${file.originalname}`);
     }
