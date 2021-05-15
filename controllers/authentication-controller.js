@@ -1,6 +1,7 @@
 const path = require('path');
 const bcrypt = require('bcrypt');
 const Blogger = require('../models/blogger-model');
+const { isNull } = require('util');
 
 
 // render signup page
@@ -75,7 +76,10 @@ const logout = (request, response, next) => {
 
 // reset password page
 const resetPasswordPage = (request, response, next) => {
-    response.render(path.join(__dirname, '..', 'views', 'authentication', 'reset-password.ejs'), {status: 'signup'});
+    response.render(path.join(__dirname, '..', 'views', 'authentication', 'reset-password.ejs'), {
+        status: 'signup',
+        blogger: request.session.blogger || null
+    });
 };
 
 // reset password
@@ -96,4 +100,12 @@ const resetPassword = (request, response, next) => {
 };
 
 
-module.exports = { signupPage, signup, loginPage, login, logout, resetPasswordPage, resetPassword };
+module.exports = { 
+    signupPage,
+    signup,
+    loginPage,
+    login,
+    logout,
+    resetPasswordPage,
+    resetPassword
+};

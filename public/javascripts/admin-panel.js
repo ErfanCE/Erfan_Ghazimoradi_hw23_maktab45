@@ -15,7 +15,7 @@ $(document).ready(function () {
         $('#gender').text(bloggerInfo[4]);
         $('#phoneNumber').text(bloggerInfo[5]);
         $('#role').text(bloggerInfo[6]);
-        $('#createAt').text(bloggerInfo[7]);
+        $('#createAt').text(bloggerInfo[7].slice(0, 24));
 
         
         $('#bloggerArticles').attr('action', `/admin/${bloggerInfo[1]}`);

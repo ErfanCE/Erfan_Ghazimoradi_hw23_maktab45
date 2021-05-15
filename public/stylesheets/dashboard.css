@@ -1,0 +1,62 @@
+.sub-header {
+    margin-top: -20px;
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: capitalize;
+}
+
+.avatar-panel {
+    background-color: #ccc;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    padding-bottom: 0.5rem;
+    width: 55%;
+    float: left;
+    margin-right: 2rem;
+    margin-top: 2rem;
+}
+.avatar-panel > form{
+    display: inline;
+}
+.avatar-panel button {
+    margin-top: 0;
+}
+.avatar-panel > form input {
+    display: inline;
+}
+
+.file-error {
+    width: 100%;
+    color: hsl(0, 100%, 50%);
+    font-size: 0.9rem;
+    font-weight: normal;
+    margin-top: 10px;
+    opacity: 0;
+}
+
+.linker {
+    text-decoration: none;
+    background-color: rgb(255, 174, 0);
+    padding: 1rem 1.5rem;
+    color: #fff;
+    border-radius: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.98rem;
+}
+
+.change-password-error {
+    /* width: 100%; */
+    color: hsl(0, 100%, 50%);
+    font-size: 0.8rem;
+    font-weight: normal;
+    padding: 0 8px;
+    margin-top: 5px;
+    margin-bottom: 0.7rem;
+    opacity: 0;
+}
+
+#changePassword {
+    float: left;
+    width: 40%;
+}

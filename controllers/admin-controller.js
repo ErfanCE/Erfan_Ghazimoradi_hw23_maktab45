@@ -89,10 +89,16 @@ const removeBlogger = (request, response, next) => {
 };
 
 const bloggerArticles = (request, response, next) => {
-    Article.find({blogger: request.params.username}, (err, articles) => {
-        if (err) return console.log('admin panel(articles): ' + err.message);
+    Blogger.findOne({username: request.params.username}, (err, blogger) => {
+        if (err) return console.log('admin panel(blogger): ' + err.message);
 
-        response.render(path.join(__dirname, '..', 'views', 'admin', 'blogger-articles.ejs'), {articles});
+        if (!blogger) return response.render(path.join(__dirname, '..', 'views', 'error', '404-page.ejs'));
+
+        Article.find({blogger: request.params.username}, (err, articles) => {
+            if (err) return console.log('admin panel(articles): ' + err.message);
+    
+            response.render(path.join(__dirname, '..', 'views', 'admin', 'blogger-articles.ejs'), {articles, blogger: request.session.blogger});
+        });
     });
 };
 

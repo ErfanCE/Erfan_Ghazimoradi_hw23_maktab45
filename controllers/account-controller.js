@@ -68,7 +68,7 @@ const password = (request, response, next) => {
         bcrypt.compare(request.body.prePassword, blogger.password, (err, isMatch) => {
             if (err) return console.log('compare password: ' + err.message);
             
-            if (!isMatch) return response.send('not match!');
+            if (!isMatch) return response.send('not-match');
 
             // change password and update blogger session
             blogger.password = request.body.newPassword;
@@ -78,7 +78,7 @@ const password = (request, response, next) => {
             blogger.save(err => {
                 if (err) return console.log('chnage password(save): ' + err.message);
 
-                return response.send('password changed');
+                return response.send('changed');
             });
         });
     });

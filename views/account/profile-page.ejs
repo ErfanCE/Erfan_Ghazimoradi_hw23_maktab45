@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/navigation.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    
     <link rel="stylesheet" href="/stylesheets/modal.css">
 
     <title>user Profile</title>
@@ -22,9 +26,9 @@
         </div>
     </div>
 
-
     <div class="content">
-        <%- include('../partial/navigation.ejs') %>
+        <div class="container">
+            <%- include('../partial/navigation.ejs') %>
 
         <p class="alter-result">Profile Updated</p>
 
@@ -61,18 +65,22 @@
 
         <form action="/account" method="POST" id="changePassword">
             <input type="text" name="prePassword" id="prePassword" placeholder="Current Password">
-            <a href="/authentication/reset-password">Forget Your Password?</a>
+            <p class="change-password-error prePassword-error">hello</p>
 
-            <br> <br>
             <input type="text" name="newPassword" id="newPassword" placeholder="New Password">
+            <p class="change-password-error newPassword-error">hello</p>
 
             <button type="submit">change password</button>
+
+            <a href="/authentication/reset-password">Forget Your Password?</a>
         </form>
 
 
         <button id="two" class="button setButton">Edit Profile</button>
         <button id="deleteAccount" class="button setButton red">Delete Account</button>
         <a href="/authentication/logout" class="linker">Logout</a>
+        </div>
+        
     </div>
 
     <script src="/javascripts/jquery-3.5.1.min.js"></script>

@@ -5,10 +5,8 @@ const { body, validationResult } = require('express-validator');
 const usernameRegex = /^(?=.{1,30}$)(?![.])(?!.*[.]{2})((?=.*[A-Z])|(?=.*[a-z]))[a-zA-Z0-9._]+(?!.*\.$)$/;
 const passwordRegex = /^((?=.*\d)|(?=.*\W)|(?=.*_))(?=.*[a-zA-Z]).{8,}$/;
 const titleRegex = /^(?=.{1,}$)(?![.])(?!.*[.]{2})((?=.*[A-Z])|(?=.*[a-z]))[a-zA-Z0-9._]+(?!.*\.$)$/;
-const phoneRegex = /^(\+98|0)?9\d{9}$/;
+const phoneRegex = /^(?=.{11}$)(0)?9\d{9}$/;
 
-
-// !phonenumber pattern bugs
 
 // signup validation rules
 const signup = () => {
@@ -63,7 +61,7 @@ const signup = () => {
             .notEmpty().withMessage('phoneNumber required.')
             .bail()
             .matches(phoneRegex, 'g').withMessage('invalid phoneNumber.')
-    ];
+    ];09122211885
 };
 
 // update blogger validation rules
@@ -177,6 +175,7 @@ const updateArticle = () => {
     ];
 };
 
+// reset password
 const resetPassword = () => {
     return [
         body('username')
@@ -196,6 +195,28 @@ const resetPassword = () => {
             .matches(/((?=.*\d)|(?=.*\W)|(?=.*_))(?=.*[a-zA-Z])/, 'g').withMessage('password must be mix of letter, numbers or special characters.')
             .bail()
             .matches(passwordRegex, 'g').withMessage('invalid password pattern.')
+    ];
+};
+
+// chnage password
+const changePassword = () => {
+    return [
+        body('prePassword')
+            .notEmpty().withMessage('current password required.')
+            .bail()
+            .isLength({min: 8}).withMessage('current password must be at least 8 characters long.')
+            .bail()
+            .matches(/((?=.*\d)|(?=.*\W)|(?=.*_))(?=.*[a-zA-Z])/, 'g').withMessage('current password must be mix of letter, numbers or special characters.')
+            .bail()
+            .matches(passwordRegex, 'g').withMessage('invalid current password pattern.'),
+        body('newPassword')
+            .notEmpty().withMessage('new password required.')
+            .bail()
+            .isLength({min: 8}).withMessage('new password must be at least 8 characters long.')
+            .bail()
+            .matches(/((?=.*\d)|(?=.*\W)|(?=.*_))(?=.*[a-zA-Z])/, 'g').withMessage('new password must be mix of letter, numbers or special characters.')
+            .bail()
+            .matches(passwordRegex, 'g').withMessage('invalid new password pattern.')
     ];
 };
 
@@ -243,4 +264,14 @@ const validator3 = (request, response, next) => {
 };
 
 
-module.exports = { signup, update, updateArticle, testValid, resetPassword, validator, validator2, validator3 };
+module.exports = { 
+    signup,
+    update,
+    updateArticle,
+    testValid, 
+    resetPassword,
+    changePassword,
+    validator,
+    validator2,
+    validator3
+};

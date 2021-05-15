@@ -7,6 +7,9 @@
     <title><%= article.title %> Page</title>
 
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/navigation.css">
+    
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
     <link rel="stylesheet" href="/stylesheets/article-detail.css">
     <link rel="stylesheet" href="/stylesheets/modal.css">
 </head>
@@ -37,7 +40,7 @@
                     <input type="text" id="bloggerAvatar" value="<%= blogger.avatar %>" disabled>
                 <% } %>
 
-                <img src="/images/articles/<%= article.blogger %>/<%= article.picture %>" alt="article-picture" width="200px" height="200px">
+                <img src="/images/articles/<%= article.blogger %>/<%= article.picture %>" alt="article-picture">
                 <li><b>Title: </b> <span id="articleTitle"><%= article.title %></span></li>
                 <li><b>Description: </b> <%= article.description  %> </li>
         

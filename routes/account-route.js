@@ -15,7 +15,7 @@ router.get('/', account.profile);
 router.patch('/', validation.update(), validation.validator2, account.edit);
 
 // change password
-router.post('/', account.password);
+router.put('/', validation.changePassword(), validation.validator2, account.password);
 
 // delete account
 router.delete('/', account.remove);

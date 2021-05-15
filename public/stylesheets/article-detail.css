@@ -1,19 +1,6 @@
-* {
-    margin: 0;
-    padding: 0;
-    outline: none;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-#articleID {
+#articleID, #bloggerAvatar {
     display: none;
 }
-
-.container {
-    margin: 1rem;
-}
-
 
 textarea {
     display: block;
@@ -35,6 +22,7 @@ textarea {
 }
 
 .detail img {
+    height: 200px;
     margin-bottom: 1rem;
     border-radius: 1.5rem;
 }
