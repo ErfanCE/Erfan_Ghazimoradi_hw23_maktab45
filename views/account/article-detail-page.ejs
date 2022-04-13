@@ -8,8 +8,7 @@
 
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/navigation.css">
-    
-    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+
     <link rel="stylesheet" href="/stylesheets/article-detail.css">
     <link rel="stylesheet" href="/stylesheets/modal.css">
 </head>
@@ -40,38 +39,46 @@
                     <input type="text" id="bloggerAvatar" value="<%= blogger.avatar %>" disabled>
                 <% } %>
 
-                <img src="/images/articles/<%= article.blogger %>/<%= article.picture %>" alt="article-picture">
-                <li><b>Title: </b> <span id="articleTitle"><%= article.title %></span></li>
-                <li><b>Description: </b> <%= article.description  %> </li>
-        
-                <h3>Content: </h3>
-                <p><%= article.content %></p>
-                
-                <% if (blogger && blogger.username === article.blogger) { %>
-                    <button id="two" class="button setButton create-btn">Edit Article</button>
+                <div class="article-top">
+                    <div class="article-picture">
+                        <img src="/images/articles/<%= article.blogger %>/<%= article.picture %>" alt="article-picture">
+                    </div>
 
-                    <button class="button setButton red" id="removeArticle">remove article</button>
-                <% } else if (blogger && blogger.username === 'admin') { %>
-                    <form action="<%= article.blogger %>/<%= article.title %>" id="articleRemove">
-                        <button class="button setButton red" type="submit">remove article</button>
-                    </form>
-                <% } %>
-            </ul>
-
-            <% if (blogger && blogger.username === article.blogger) { %>
-                <div class="article-picture">
-                    <form action="/" enctype="multipart/form-data" id="pictureForm">
-                        <input type="file" name="picture" id="picture">
-            
-                        <button type="submit" class="button setButton">change picture</button>
-                    </form>
-            
-                    <!-- <button id="pictureRemove" class="button setButton red">Remove picture</button> -->
-            
-                    <p class="file-error">choosen avatar size must be less than 1MB.</p>
+                    <div class="article-header">
+                        <span id="articleTitle"><%= article.title %></span> written by
+                        <span id="articleAuthor"><%= article.blogger %></span>
+                        <li><b>Description: </b> <%= article.description %></li>
+                    </div>
                 </div>
-            <% } %>
+                
+                <textarea class="article-content" readonly><%= article.content %></textarea>
 
+                <div class="button-part">
+                    <% if (blogger && blogger.username === article.blogger) { %>
+                        <button id="two" class="button primary-btn mg-r-10">Edit Article</button>
+    
+                        <button class="button primary-btn red-btn" id="removeArticle">remove article</button>
+                    <% } else if (blogger && blogger.username === 'admin') { %>
+                        <form action="<%= article.blogger %>/<%= article.title %>" id="articleRemove">
+                            <button class="button primary-btn red-btn" type="submit">remove article</button>
+                        </form>
+                    <% } %>
+                </div>
+
+                <div class="picture-part">
+                    <% if (blogger && blogger.username === article.blogger) { %>
+                        <div class="article-picture">
+                            <form action="/" enctype="multipart/form-data" id="pictureForm">
+                                <input type="file" name="picture" id="picture">
+                    
+                                <button type="submit" class="button primary-btn">change picture</button>
+                            </form>
+                    
+                            <p class="file-error">choosen avatar size must be less than 1MB.</p>
+                        </div>
+                    <% } %>
+                </div>
+            </ul>
 
             <!-- comment -->
             <%- include('../partial/comment.ejs') %>

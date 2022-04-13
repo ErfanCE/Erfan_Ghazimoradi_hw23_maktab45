@@ -10,7 +10,6 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-
                 if (response === 'avatar-change') {
                     $(`.alter-result`).text('Avatar Updated.');
                     $(`.alter-result`).css('background-color', 'green');

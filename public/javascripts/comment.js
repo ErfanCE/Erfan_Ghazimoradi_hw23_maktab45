@@ -58,16 +58,3 @@ $(document).ready(function () {
         });
     });
 });
-
-
-function createArticleAlert(alert) {
-    // reset errors
-    $(".update-error").css("opacity", "0");
-
-    alert.forEach((err) => {
-        if (err.includes("title")) displayAlert("title", err);
-        if (err.includes("description")) displayAlert("description", err);
-        if (err.includes("content")) displayAlert("content", err);
-        if (err.includes("picture")) displayAlert("picture", err);
-    });
-};

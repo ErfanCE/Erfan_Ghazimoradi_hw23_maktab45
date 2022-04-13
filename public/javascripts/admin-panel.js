@@ -79,7 +79,6 @@ $(document).ready(function () {
         });
     });
     
-
     $('.close-btn').click(function () {
         $('.detail').text('');
         $('.detail-image').attr('src', 'images/avatars/default-avatar.png');

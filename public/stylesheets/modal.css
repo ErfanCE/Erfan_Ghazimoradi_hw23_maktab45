@@ -580,38 +580,3 @@ body.modal-active {
     margin-top: 5px;
     margin-bottom: 0.7rem;
 }
-
-
-.alter-result {
-    background-color: green;
-    color: #fdfdfd;
-    border-radius: 0.5rem;
-    padding: 12px 0;
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    width: 15rem;
-    transition: 0.5s;
-    text-align: center;
-    opacity: 0;
-}
-
-
-.setButton {
-    border: none;
-    padding: 1rem;
-    margin-top: 1rem;
-    border-radius: 0.7rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    cursor: pointer;
-    background-color: #dedede;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: 0.25s;
-    margin-right: 1rem;
-}
-.red {
-    background-color: #b30000;
-    color: #f9f9f9;
-}

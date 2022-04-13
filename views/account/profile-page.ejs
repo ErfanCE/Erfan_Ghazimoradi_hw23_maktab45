@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/navigation.css">
-    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard/profile-page.css">
     
     <link rel="stylesheet" href="/stylesheets/modal.css">
 
@@ -30,57 +30,69 @@
         <div class="container">
             <%- include('../partial/navigation.ejs') %>
 
-        <p class="alter-result">Profile Updated</p>
+            <section class="main">
+                <p class="alter-result">Profile Updated</p>
 
-        <p class="sub-header"><%= blogger.firstname %> <%= blogger.lastname %> personal account</p>
+                <div class="blogger-panel">
+                    <div class="information">
+                        <h3 class="section-title"><%= blogger.firstname %> <%= blogger.lastname %> Personal Account</h3>
 
-        <ul class="blogger-info">
-            <li><b>First name:</b> <%= blogger.firstname %> </li>
-            <li><b>Last name:</b> <%= blogger.lastname %> </li>
-            <li><b>Username:</b> <%= blogger.username %> </li>
+                        <ul class="blogger-info">
+                            <li><b>First name:</b> <%= blogger.firstname %></li>
+                            <li><b>Last name:</b> <%= blogger.lastname %></li>
+                            <li><b>Username:</b> <%= blogger.username %></li>
 
-            <% if (blogger.gender === 'unset') { %>
-                <li><b>Gender:</b> Rather not say </li>
-            <% } else { %>
-                <li><b>Gender:</b> <%= blogger.gender %> </li>
-            <% } %> 
-            
-            <li><b>Phone number:</b> <%= blogger.phoneNumber %> </li>
-            <li><b>Role:</b> <%= blogger.role %> </li>
-            <li><b>Created at:</b> <%= blogger.createdAt %> </li>
-        </ul>
+                            <% if (blogger.gender === 'unset') { %>
+                                <li><b>Gender:</b> Rather not say</li>
+                            <% } else { %>
+                                <li><b>Gender:</b> <%= blogger.gender %></li>
+                            <% } %> 
+                            
+                            <li><b>Phone number:</b> <%= blogger.phoneNumber %></li>
+                            <li><b>Role:</b> <%= blogger.role %> </li>
+                            <li><b>Created at:</b> <%= blogger.createdAt %></li>
 
-        <div class="avatar-panel">
-            <form action="/" enctype="multipart/form-data" id="avatarForm">
-                <input type="file" name="avatar" id="avatar">
+                            <div class="button-part">
+                                <button id="two" class="button primary-btn mg-r-10">Edit Profile</button>
+                                <button id="deleteAccount" class="primary-btn red-btn mg-r-10">Delete Account</button>
 
-                <button type="submit" class="button setButton">Save Avatar</button>
-            </form>
+                                <a href="/authentication/logout" class="link-btn primary-color">Logout</a>
+                            </div>
+                        </ul>
+                    </div>
 
-            <button id="avatarRemove" class="button setButton red">Remove Avatar</button>
-
-            <p class="file-error">choosen avatar size must be less than 1MB.</p>
-        </div>
-
-
-        <form action="/account" method="POST" id="changePassword">
-            <input type="text" name="prePassword" id="prePassword" placeholder="Current Password">
-            <p class="change-password-error prePassword-error">hello</p>
-
-            <input type="text" name="newPassword" id="newPassword" placeholder="New Password">
-            <p class="change-password-error newPassword-error">hello</p>
-
-            <button type="submit">change password</button>
-
-            <a href="/authentication/reset-password">Forget Your Password?</a>
-        </form>
-
-
-        <button id="two" class="button setButton">Edit Profile</button>
-        <button id="deleteAccount" class="button setButton red">Delete Account</button>
-        <a href="/authentication/logout" class="linker">Logout</a>
-        </div>
+                    <div class="options">
+                        <h3 class="section-title">Avatar</h3>
+                        <div class="avatar-panel">
+                            <form action="/" enctype="multipart/form-data" id="avatarForm">
+                                <input type="file" name="avatar" id="avatar">
         
+                                <button type="submit" class="primary-btn mg-r-10">Save Avatar</button>
+
+                                <button id="avatarRemove" class="primary-btn red-btn">Remove Avatar</button>
+                            </form>
+        
+                            <p class="file-error">choosen avatar size must be less than 1MB.</p>
+                        </div>
+
+                        <h3 class="section-title">Password</h3>
+                        <form action="/account" method="POST" id="changePassword">
+                            <input type="text" name="prePassword" id="prePassword" placeholder="Current Password">
+                            <p class="change-password-error prePassword-error">hello</p>
+        
+                            <input type="text" name="newPassword" id="newPassword" placeholder="New Password">
+                            <p class="change-password-error newPassword-error">hello</p>
+        
+                            <button type="submit" class="primary-btn primary-color">change password</button>
+        
+                            <a href="/authentication/reset-password">Forget Your Password?</a>
+                        </form>
+                    </div>
+                </div>
+
+                
+            </section>
+        </div>
     </div>
 
     <script src="/javascripts/jquery-3.5.1.min.js"></script>

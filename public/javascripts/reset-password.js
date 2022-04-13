@@ -22,7 +22,7 @@ $(document).ready(function () {
 
                     setTimeout(function () {
                         $(`.reset-alert`).css("opacity", "0");
-                        location.href = "http://localhost:8000/authentication/login";
+                        location.href = "http://localhost:8000/authentication/logout";
                     }, 2000);
                 } else if (response === 'not-match') {
                     $(`.reset-alert`).text("Phone number and Username dosen't Match");
